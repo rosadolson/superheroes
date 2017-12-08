@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Heroes from './Heroes'
+import HeroesList from './HeroesList'
 import Home from './Home'
 import NavBar from './NavBar'
 import $ from 'jquery'
@@ -28,6 +28,15 @@ class App extends Component {
     })
   }
 
+  deleteHero = (hero) => {
+    $.ajax({
+      url: `/api/heroes/${hero._id}`,
+      method: 'DELETE'
+    }).done((response) => {
+      this.loadHeroesFromServer()
+    })
+  }
+
   render () {
     return (
       <Router>
@@ -37,7 +46,7 @@ class App extends Component {
           <Route path='/create-hero' render={() => <CreateHeroContainer loadHeroesFromServer={this.loadHeroesFromServer} />} />
           {
             this.state.heroes
-            ? <Route path='/heroes' render={() =>  <Heroes heroes={this.state.heroes} />} />
+            ? <Route path='/heroes' render={() =>  <HeroesList heroes={this.state.heroes} deleteHero={this.deleteHero} />} />
             : 'No Heroes'
           }
         </div>

@@ -1,4 +1,6 @@
 import React from 'react'
+import HeroCard from './HeroCard'
+import PropTypes from 'prop-types'
 
 const styles = {
   container: {
@@ -22,7 +24,7 @@ const styles = {
   }
 }
 
-const Heroes = ({ heroes }) => {
+const HeroesList = ({ heroes, deleteHero }) => {
   return (
     <div>
       <div style={styles.container}>
@@ -32,7 +34,7 @@ const Heroes = ({ heroes }) => {
       <div>
         {
           heroes.map((hero, index) => {
-            return <p key={index}>{hero.name}</p>
+            return <HeroCard hero={hero} key={index} deleteHero={() => deleteHero(hero)} />
           })
         }
       </div>
@@ -40,4 +42,9 @@ const Heroes = ({ heroes }) => {
   )
 }
 
-export default Heroes
+HeroesList.propTypes = {
+  heroes: PropTypes.array.isRequired,
+  deleteHero: PropTypes.func.isRequired
+}
+
+export default HeroesList

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import $ from 'jquery'
+import CreateHeroForm from './CreateHeroForm'
 import {
   withRouter
 } from 'react-router-dom'
@@ -23,7 +24,7 @@ class CreateHeroContainer extends Component {
 
   onNemesisChange = (e) => this.setState({ nemesis: e.target.value })
 
-  handleSumbit = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault()
     const {name, superPower, img, universe, nemesis} = this.state
     const hero = {name, superPower, img, universe, nemesis}
@@ -40,30 +41,14 @@ class CreateHeroContainer extends Component {
   render() {
     return (
       <div>
-        <h3>Create Hero</h3>
-        <form>
-          <div>
-            <label>Name</label>
-            <input type='text' onChange={this.onNameChange} />
-          </div>
-          <div>
-            <label>Super Power</label>
-            <input type='text' onChange={this.onSuperPowerChange} />
-          </div>
-          <div>
-            <label>Image</label>
-            <input type='text'onChange={this.onImageChange} />
-          </div>
-          <div>
-            <label>Universe</label>
-            <input type='text' onChange={this.onUniverseChange} />
-          </div>
-          <div>
-            <label>Nemesis</label>
-            <input type='text' onChange={this.onNemesisChange} />
-          </div>
-          <button onClick={this.handleSumbit}> SUBMIT </button>
-        </form>
+        <CreateHeroForm 
+          onNameChange={this.onNameChange}
+          onSuperPowerChange={this.onSuperPowerChange}
+          onImageChange={this.onImageChange}
+          onUniverseChange={this.onUniverseChange}
+          onNemesisChange={this.onNemesisChange}
+          handleSubmit={this.handleSubmit}
+        />
       </div>
     )
   }
