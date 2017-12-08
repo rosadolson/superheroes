@@ -5,6 +5,35 @@ import {
   withRouter
 } from 'react-router-dom'
 
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: '#ecf0f1',
+    padding: '3%',
+    marginLeft: '5%',
+    marginRight: '5%'
+  },
+  header: {
+    fontFamily: 'Candal, sans-serif',
+    color: '#e74c3c',
+    marginBottom: '1%'
+  },
+  subHeader: {
+    fontFamily: 'Roboto, sans-serif',
+    color: '#2c3e50',
+    marginTop: '0%'
+  },
+  formSection: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    backgroundColor: '#2c3e50',
+    borderRadius: '2px'
+  }
+}
+
 class CreateHeroContainer extends Component {
   state = {
     name: undefined,
@@ -41,6 +70,11 @@ class CreateHeroContainer extends Component {
   render() {
     return (
       <div>
+        <div style={styles.container}>
+          <h2 style={styles.header}>Create A Hero.</h2>
+          <h4 style={styles.subHeader}>Add a new hero to the list.</h4>
+        </div>
+        <div style={styles.formSection}>
         <CreateHeroForm 
           onNameChange={this.onNameChange}
           onSuperPowerChange={this.onSuperPowerChange}
@@ -49,6 +83,7 @@ class CreateHeroContainer extends Component {
           onNemesisChange={this.onNemesisChange}
           handleSubmit={this.handleSubmit}
         />
+        </div>
       </div>
     )
   }

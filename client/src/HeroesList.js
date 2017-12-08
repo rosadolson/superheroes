@@ -21,6 +21,13 @@ const styles = {
     fontFamily: 'Roboto, sans-serif',
     color: '#2c3e50',
     marginTop: '0%'
+  },
+  heroSection: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    backgroundColor: '#2c3e50',
+    borderRadius: '2px'
   }
 }
 
@@ -31,7 +38,7 @@ const HeroesList = ({ heroes, deleteHero }) => {
         <h2 style={styles.header}>Heroes.</h2>
         <h4 style={styles.subHeader}>This is where all the hero stuff is at.</h4>
       </div>
-      <div>
+      <div style={styles.heroSection}>
         {
           heroes.map((hero, index) => {
             return <HeroCard hero={hero} key={index} deleteHero={() => deleteHero(hero)} />
