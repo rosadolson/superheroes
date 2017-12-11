@@ -41,7 +41,11 @@ const HeroesList = ({ heroes, deleteHero }) => {
       <div style={styles.heroSection}>
         {
           heroes.map((hero, index) => {
-            return <HeroCard hero={hero} key={index} deleteHero={() => deleteHero(hero)} />
+            return <HeroCard
+              hero={hero}
+              key={index}
+              deleteHero={() => deleteHero(hero)}
+            />
           })
         }
       </div>

@@ -43,6 +43,8 @@ const NavBar = () => {
         <Link style={styles.link} to='/'> Home </Link>
         <Link style={styles.link} to='/heroes'> Heroes </Link>
         <Link style={styles.link} to='/create-hero'> Create Hero </Link>
+        <Link style={styles.link} to='/villains'> Villains </Link>
+        <Link style={styles.link} to='/create-villain'> Create Villain </Link>
       </nav>
     </div>
   )

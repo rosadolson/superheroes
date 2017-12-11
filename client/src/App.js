@@ -4,6 +4,7 @@ import Home from './Home'
 import NavBar from './NavBar'
 import $ from 'jquery'
 import CreateHeroContainer from './CreateHeroContainer'
+import VillainsList from './VillainsList'
 import {
   BrowserRouter as Router,
   Route
@@ -11,11 +12,13 @@ import {
 
 class App extends Component {
   state = {
-    heroes: undefined
+    heroes: undefined,
+    villains: undefined
   }
 
   componentDidMount () {
     this.loadHeroesFromServer()
+    this.loadVillainsFromServer()
   }
 
   loadHeroesFromServer = () => {
@@ -28,12 +31,30 @@ class App extends Component {
     })
   }
 
+  loadVillainsFromServer = () => {
+    $.ajax({
+      url: '/api/villains',
+      method: 'GET'
+    }).done((response) => {
+      this.setState({ villains: response.villains })
+    })
+  }
+
   deleteHero = (hero) => {
     $.ajax({
       url: `/api/heroes/${hero._id}`,
       method: 'DELETE'
     }).done((response) => {
       this.loadHeroesFromServer()
+    })
+  }
+
+  deleteVillain = (villain) => {
+    $.ajax({
+      url: `/api/villains/${villain._id}`,
+      method: 'DELETE'
+    }).done((response) => {
+      this.loadVillainsFromServer()
     })
   }
 
@@ -48,6 +69,12 @@ class App extends Component {
             this.state.heroes
             ? <Route path='/heroes' render={() =>  <HeroesList heroes={this.state.heroes} deleteHero={this.deleteHero} />} />
             : 'No Heroes'
+          }
+          
+          {
+            this.state.villains
+            ? <Route path='/villains' render={() => <VillainsList villains={this.state.villains} deleteVillain={this.deleteVillain} />} />
+            : 'No Villains'
           }
         </div>
       </Router>
