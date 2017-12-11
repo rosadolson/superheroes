@@ -5,6 +5,7 @@ import NavBar from './NavBar'
 import $ from 'jquery'
 import CreateHeroContainer from './CreateHeroContainer'
 import VillainsList from './VillainsList'
+import CreateVillainContainer from './CreateVillainContainer'
 import {
   BrowserRouter as Router,
   Route
@@ -70,7 +71,7 @@ class App extends Component {
             ? <Route path='/heroes' render={() =>  <HeroesList heroes={this.state.heroes} deleteHero={this.deleteHero} />} />
             : 'No Heroes'
           }
-          
+          <Route path='/create-villain' render={() => <CreateVillainContainer loadVillainsFromServer={this.loadVillainsFromServer} />} />
           {
             this.state.villains
             ? <Route path='/villains' render={() => <VillainsList villains={this.state.villains} deleteVillain={this.deleteVillain} />} />
