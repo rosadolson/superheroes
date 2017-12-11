@@ -5,6 +5,35 @@ import {
   withRouter
 } from 'react-router-dom'
 
+const styles = {
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: '#ecf0f1',
+    padding: '3%',
+    marginLeft: '5%',
+    marginRight: '5%'
+  },
+  header: {
+    fontFamily: 'Candal, sans-serif',
+    color: '#e74c3c',
+    marginBottom: '1%'
+  },
+  subHeader: {
+    fontFamily: 'Roboto, sans-serif',
+    color: '#2c3e50',
+    marginTop: '0%'
+  },
+  formSection: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    backgroundColor: '#2c3e50',
+    borderRadius: '2px'
+  }
+}
+
 class CreateVillainContainer extends Component {
   state ={
     name: undefined,
@@ -38,8 +67,11 @@ class CreateVillainContainer extends Component {
   render () {
     return (
       <div>
-        <h2>Create A Villain.</h2>
-        <h4>Add a new villain to the list.</h4>
+        <div style={styles.container}>
+          <h2 style={styles.header}>Create A Villain.</h2>
+          <h4 style={styles.subHeader}>Add a new villain to the list.</h4>
+        </div>
+        <div style={styles.formSection}>
         <CreateVillainForm
           onNameChange={this.onNameChange}
           onImageChange={this.onImageChange}
@@ -47,6 +79,7 @@ class CreateVillainContainer extends Component {
           onNemesisChange={this.onNemesisChange}
           submitVillain={this.submitVillain}
         />
+        </div>
       </div>
     )
   }

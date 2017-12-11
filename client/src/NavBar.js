@@ -16,9 +16,24 @@ const styles = {
     boxShadow: '2px 6px 10px #bdc3c7'
   },
   header: {
+    display: 'flex',
+    justifyContent: 'flex-start'
+  },
+  heroHeader: {
     fontFamily: 'Candal, sans-serif',
     color: '#e74c3c',
-    marginTop: '1.5%'
+    marginTop: '2%'
+  },
+  and: {
+    fontFamily: 'Candal, sans-serif',
+    color: '#ecf0f1',
+    marginTop: '2%'
+  },
+  villainHeader: {
+    fontFamily: 'Candal, sans-serif',
+    color: '#7f8c8d',
+    marginTop: '2%',
+    paddingLeft: '1%'
   },
   nav: {
     fontFamily: 'Roboto, sans-serif',
@@ -38,7 +53,11 @@ const styles = {
 const NavBar = () => {
   return (
     <div style={styles.container}>
-      <h1 style={styles.header}>Superheroes</h1>
+      <div style={styles.header}>
+        <h1 style={styles.heroHeader}>Superheroes</h1>
+        <h1 style={styles.and}>/</h1>
+        <h1 style={styles.villainHeader}>Villains</h1>
+      </div>
       <nav style={styles.nav}>
         <Link style={styles.link} to='/'> Home </Link>
         <Link style={styles.link} to='/heroes'> Heroes </Link>
