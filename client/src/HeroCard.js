@@ -4,7 +4,10 @@ import PropTypes from 'prop-types'
 const styles = {
   container: {
     width: '25vw',
-    margin: '2%',
+    marginTop: '5%',
+    marginLeft: '2%',
+    marginRight: '2%',
+    marginBottom: '2%',
     paddingBottom: '1%',
     backgroundColor: '#34495e',
   },
