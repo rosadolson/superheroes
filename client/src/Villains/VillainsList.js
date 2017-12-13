@@ -31,7 +31,7 @@ const styles = {
   }
 }
 
-const VillainsList = ({ villains, deleteVillain }) => {
+const VillainsList = ({ villains, deleteVillain, showUniqueVillain }) => {
   return (
     <div>
       <div style={styles.container}>
@@ -44,7 +44,8 @@ const VillainsList = ({ villains, deleteVillain }) => {
           return <VillainCard
             villain={villain}
             key={index}
-            deleteVillain={() => deleteVillain(villain)}
+            deleteVillain={deleteVillain}
+            showUniqueVillain={showUniqueVillain}
           />
         })
       }
@@ -55,7 +56,8 @@ const VillainsList = ({ villains, deleteVillain }) => {
 
 VillainsList.propTypes = {
   villains: PropTypes.array.isRequired,
-  deleteHero: PropTypes.func.isRequired
+  deleteVillain: PropTypes.func.isRequired,
+  showUniqueVillain:PropTypes.func.isRequired
 }
 
 export default VillainsList

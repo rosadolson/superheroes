@@ -31,7 +31,7 @@ const styles = {
   }
 }
 
-const HeroesList = ({ heroes, deleteHero }) => {
+const HeroesList = ({ heroes, deleteHero, showUniqueHero }) => {
   return (
     <div>
       <div style={styles.container}>
@@ -44,7 +44,8 @@ const HeroesList = ({ heroes, deleteHero }) => {
             return <HeroCard
               hero={hero}
               key={index}
-              deleteHero={() => deleteHero(hero)}
+              deleteHero={deleteHero}
+              showUniqueHero={showUniqueHero}
             />
           })
         }
@@ -55,7 +56,8 @@ const HeroesList = ({ heroes, deleteHero }) => {
 
 HeroesList.propTypes = {
   heroes: PropTypes.array.isRequired,
-  deleteHero: PropTypes.func.isRequired
+  deleteHero: PropTypes.func.isRequired,
+  showUniqueHero: PropTypes.func.isRequired
 }
 
 export default HeroesList

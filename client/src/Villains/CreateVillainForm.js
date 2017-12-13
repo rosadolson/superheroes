@@ -20,7 +20,8 @@ const styles = {
   input: {
     width: '50%',
     display: 'flex',
-    alignContent: 'flex-end'
+    alignContent: 'flex-end',
+    padding: '2%'
   },
   button: {
     marginLeft: '20%',

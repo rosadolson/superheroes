@@ -22,7 +22,7 @@ const styles = {
   },
   name: {
     fontFamily: 'Candal, sans-serif',
-    color: '#e74c3c',
+    color: '#7f8c8d',
     marginBottom: '4%',
     fontSize: '20px'
   },
@@ -56,29 +56,29 @@ const styles = {
   }
 }
 
-const HeroCard = ({ hero, deleteHero }) => {
+const VillainCard = ({ villain, deleteVillain, showUniqueVillain }) => {
   return (
-    <div style={styles.container}>
-      <div style={styles.topSection}>
-        <h2 style={styles.name}>{hero.name}</h2>
-        <img style={styles.image} src={hero.img} />
-      </div>
-      <div style={styles.bottomSection}>
-        <p style={styles.titles}>Super Power:</p>
-        <p style={styles.traits}>{hero.superPower}</p>
-        <p style={styles.titles}>Universe:</p>
-        <p style={styles.traits}>{hero.universe}</p>
-        <p style={styles.titles}>Nemesis:</p>
-        <p style={styles.traits}>{hero.nemesis}</p>
-      </div>
-      <button style={styles.button} onClick={deleteHero}> DELETE </button>
+      <div style={styles.container}>
+        <div style={styles.topSection}>
+          <h2 style={styles.name}>{villain.name}</h2>
+          <img style={styles.image} src={villain.img} />
+        </div>
+        <div style={styles.bottomSection}>
+          <p style={styles.titles}>Universe:</p>
+          <p style={styles.traits}>{villain.universe}</p>
+          <p style={styles.titles}>Nemesis:</p>
+          <p style={styles.traits}>{villain.nemesis}</p>
+        </div>
+      <button style={styles.button} onClick={() => deleteVillain(villain)}>DELETE</button>
+      <button onClick={() => showUniqueVillain(villain)}>MORE INFO</button>
     </div>
   )
 }
 
-HeroCard.propTypes = {
-  hero: PropTypes.object.isRequired,
-  deleteHero: PropTypes.func.isRequired
+VillainCard.propTypes = {
+  villain: PropTypes.object.isRequired,
+  deleteVillain: PropTypes.func.isRequired,
+  showUniqueVillain: PropTypes.func.isRequired
 }
 
-export default HeroCard
+export default VillainCard
