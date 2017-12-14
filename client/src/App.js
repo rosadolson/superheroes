@@ -1,13 +1,18 @@
 import React, {Component} from 'react'
-import HeroesList from './Heroes/HeroesList'
 import Home from './Home'
 import NavBar from './Components/NavBar'
 import $ from 'jquery'
+
+import HeroesList from './Heroes/HeroesList'
 import CreateHeroContainer from './Heroes/CreateHeroContainer'
-import VillainsList from './Villains/VillainsList'
-import CreateVillainContainer from './Villains/CreateVillainContainer'
 import HeroContainer from './Heroes/HeroContainer'
 import EditHeroContainer from './Heroes/EditHeroContainer'
+
+import VillainsList from './Villains/VillainsList'
+import CreateVillainContainer from './Villains/CreateVillainContainer'
+import VillainContainer from './Villains/VillainContainer'
+import EditVillainContainer from './Villains/EditVillainContainer'
+
 import {
   BrowserRouter as Router,
   Route
@@ -102,6 +107,8 @@ class App extends Component {
           }
           <Route exact path='/hero/:heroId' render={() => <HeroContainer />} />
           <Route path='/edit-hero/:heroId' render={() => <EditHeroContainer />} />
+          <Route exact path='/villain/:villainId' render={() => <VillainContainer />} />
+          <Route path='/edit-villain/:villainId' render={() => <EditVillainContainer />} />
         </div>
       </Router>
     )
