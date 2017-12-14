@@ -29,7 +29,8 @@ const styles = {
   },
   bottomSection: {
     borderTop: '1px solid #ecf0f1',
-    margin: '10%',
+    marginLeft: '10%',
+    marginRight: '10%',
     paddingTop: '3%',
     paddingLeft: '7%',
     display: 'flex',
@@ -38,7 +39,7 @@ const styles = {
   },
   titles: {
     fontFamily: 'Candal, sans-serif',
-    color: '#e74c3c',
+    color: '#7f8c8d',
     margin: '0%',
     fontSize: '12px'
   },
@@ -50,30 +51,57 @@ const styles = {
     color: '#ecf0f1',
     fontSize: '12px'
   },
+  buttonSection: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    marginTop: '3%',
+    marginBottom: '3%'
+  },
   button: {
-    marginTop: '0%',
-    marginLeft: '40%',
-    marginRight: '50%'
+    border: 'none'
+  },
+  linkSection: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    paddingTop: '3%',
+    marginTop: '3%',
+    marginBottom: '3%',
+    marginLeft: '10%',
+    marginRight: '10%',
+    borderTop: '1px solid #ecf0f1',
+    fontFamily: 'Roboto, sans-serif'
+  },
+  link: {
+    textDecoration: 'none',
+    color: '#ecf0f1',
   }
 }
 
 const VillainCard = ({ villain, deleteVillain, showUniqueVillain }) => {
   return (
-      <div style={styles.container}>
-        <div style={styles.topSection}>
-          <h2 style={styles.name}>{villain.name}</h2>
-          <img style={styles.image} src={villain.img} />
-        </div>
-        <div style={styles.bottomSection}>
-          <p style={styles.titles}>Universe:</p>
-          <p style={styles.traits}>{villain.universe}</p>
-          <p style={styles.titles}>Nemesis:</p>
-          <p style={styles.traits}>{villain.nemesis}</p>
-        </div>
-      <button style={styles.button} onClick={() => deleteVillain(villain)}>DELETE</button>
-      <button onClick={() => showUniqueVillain(villain)}>MORE INFO</button>
-      <Link to={`/villain/${villain._id}`}>View Info</Link>
-      <Link to={`/edit-villain/${villain._id}`}>Edit Villain</Link>
+    <div style={styles.container}>
+
+      <div style={styles.topSection}>
+        <h2 style={styles.name}>{villain.name}</h2>
+        <img style={styles.image} src={villain.img} />
+      </div>
+
+      <div style={styles.buttonSection}>
+        <button style={styles.button} onClick={() => showUniqueVillain(villain)}>MORE INFO</button>
+        <button style={styles.button} onClick={() => deleteVillain(villain)}>DELETE</button>
+      </div>
+
+      <div style={styles.linkSection}>
+        <Link style={styles.link} to={`/villain/${villain._id}`}>View Info</Link>
+        <Link style={styles.link} to={`/edit-villain/${villain._id}`}>Edit Villain</Link>
+      </div>
+      
+      <div style={styles.bottomSection}>
+        <p style={styles.titles}>Universe:</p>
+        <p style={styles.traits}>{villain.universe}</p>
+        <p style={styles.titles}>Nemesis:</p>
+        <p style={styles.traits}>{villain.nemesis}</p>
+      </div>
     </div>
   )
 }

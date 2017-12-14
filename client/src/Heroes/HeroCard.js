@@ -29,7 +29,8 @@ const styles = {
   },
   bottomSection: {
     borderTop: '1px solid #ecf0f1',
-    margin: '10%',
+    marginLeft: '10%',
+    marginRight: '10%',
     paddingTop: '3%',
     paddingLeft: '7%',
     display: 'flex',
@@ -50,20 +51,51 @@ const styles = {
     color: '#ecf0f1',
     fontSize: '12px'
   },
+  buttonSection: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    marginTop: '3%',
+    marginBottom: '3%'
+  },
   button: {
-    marginTop: '0%',
-    marginLeft: '40%',
-    marginRight: '50%'
+    border: 'none'
+  },
+  linkSection: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    paddingTop: '3%',
+    marginTop: '3%',
+    marginBottom: '3%',
+    marginLeft: '10%',
+    marginRight: '10%',
+    borderTop: '1px solid #ecf0f1',
+    fontFamily: 'Roboto, sans-serif'
+  },
+  link: {
+    textDecoration: 'none',
+    color: '#ecf0f1',
   }
 }
 
 const HeroCard = ({ hero, deleteHero, showUniqueHero }) => {
   return (
     <div style={styles.container}>
+
       <div style={styles.topSection}>
         <h2 style={styles.name}>{hero.name}</h2>
         <img style={styles.image} src={hero.img} />
       </div>
+
+      <div style={styles.buttonSection}>
+      <button style={styles.button} onClick={() => showUniqueHero(hero)}> MORE INFO </button>
+      <button style={styles.button} onClick={() => deleteHero(hero)}> DELETE </button>
+      </div>
+
+      <div style={styles.linkSection}>
+      <Link style={styles.link} to={`/hero/${hero._id}`}>View Info</Link>
+      <Link style={styles.link} to={`/edit-hero/${hero._id}`}>Edit Hero</Link>
+      </div>
+
       <div style={styles.bottomSection}>
         <p style={styles.titles}>Super Power:</p>
         <p style={styles.traits}>{hero.superPower}</p>
@@ -72,10 +104,6 @@ const HeroCard = ({ hero, deleteHero, showUniqueHero }) => {
         <p style={styles.titles}>Nemesis:</p>
         <p style={styles.traits}>{hero.nemesis}</p>
       </div>
-      <button style={styles.button} onClick={() => deleteHero(hero)}> DELETE </button>
-      <button onClick={() => showUniqueHero(hero)}> MORE INFO </button>
-      <Link to={`/hero/${hero._id}`}>View Info</Link>
-      <Link to={`/edit-hero/${hero._id}`}>Edit Hero</Link>
     </div>
   )
 }
