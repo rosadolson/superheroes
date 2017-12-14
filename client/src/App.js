@@ -6,6 +6,8 @@ import $ from 'jquery'
 import CreateHeroContainer from './Heroes/CreateHeroContainer'
 import VillainsList from './Villains/VillainsList'
 import CreateVillainContainer from './Villains/CreateVillainContainer'
+import HeroContainer from './Heroes/HeroContainer'
+import EditHeroContainer from './Heroes/EditHeroContainer'
 import {
   BrowserRouter as Router,
   Route
@@ -27,7 +29,6 @@ class App extends Component {
       url: '/api/heroes',
       method: 'GET'
     }).done((response) => {
-      console.log(response)
       this.setState({ heroes: response.superHeroes })
     })
   }
@@ -66,7 +67,7 @@ class App extends Component {
     }).done((response) => {
       console.log(response)
       const hero = response.hero
-      alert(`${hero.name} has ${hero.superPower} as a super power, and is from ${hero.universe}. ${hero.name} hates ${hero.nemesis} more than anyone else in the world.`)
+      alert(`${hero.name} has ${hero.superPower} as a super power, and is from ${hero.universe}. ${hero.name} hates ${hero.nemesis}.`)
     })
   }
 
@@ -99,6 +100,8 @@ class App extends Component {
             ? <Route path='/villains' render={() => <VillainsList villains={this.state.villains} deleteVillain={this.deleteVillain} showUniqueVillain={this.showUniqueVillain} />} />
             : 'No Villains'
           }
+          <Route exact path='/hero/:heroId' render={() => <HeroContainer />} />
+          <Route path='/edit-hero/:heroId' render={() => <EditHeroContainer />} />
         </div>
       </Router>
     )
