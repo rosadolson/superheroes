@@ -12,7 +12,8 @@ const styles = {
 
 class VillainContainer extends Component {
   state = {
-    villain: undefined
+    villain: undefined,
+    loading: true
   }
 
   componentDidMount () {
@@ -26,7 +27,7 @@ class VillainContainer extends Component {
       method: 'GET'
     }).done((response) => {
       console.log(response)
-      this.setState({ villain: response.villain })
+      this.setState({ villain: response.villain, loading: false })
     })
   }
 
@@ -34,8 +35,8 @@ class VillainContainer extends Component {
     return (
       <div style={styles.container}>
         {
-          this.state.villain
-          ? <VillainInfo villain={this.state.villain}/>
+          !this.state.loading
+          ? <VillainInfo villain={this.state.villain} />
           : 'Hero not available.'
         }
       </div>

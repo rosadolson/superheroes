@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const styles = {
   container: {
@@ -24,6 +25,10 @@ const VillainInfo = ({ villain }) => {
       <p>Nemesis: {villain.nemesis}</p>
     </div>
   )
+}
+
+VillainInfo.propTypes = {
+  villain: PropTypes.object.isRequired
 }
 
 export default VillainInfo
