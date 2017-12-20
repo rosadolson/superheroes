@@ -4,7 +4,9 @@ const Villain = require('../models/Villain')
 
 Router.route('/api/villains')
   .get((req, res) => {
-    Villain.find((err, villains) => {
+    Villain.find()
+    .populate('nemesis')
+    .exec((err, villains) => {
       if (err) {
         res.json({ error: err })
       } else {
@@ -41,7 +43,9 @@ Router.route('/api/villains/:villainId')
 Router.route('/api/villains/:villainId')
   .get((req, res) => {
     const villainId = req.params.villainId
-    Villain.findById({_id: villainId}, (err, villain) => {
+    Villain.findById({_id: villainId})
+    .populate('nemesis')
+    .exec((err, villain) => {
       if (err) {
         res.json({ error: err})
       } else {

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const EditHeroForm = ({ name, img, superPower, universe, nemesis, onNameChange, onImageChange, onSuperPowerChange, onUniverseChange, onNemesisChange, submitHeroToServer }) => {
+const EditHeroForm = ({ villains, name, img, superPower, universe, nemesis, onNameChange, onImageChange, onSuperPowerChange, onUniverseChange, onNemesisChange, submitHeroToServer }) => {
   return (
     <form>
       <div>
@@ -22,7 +22,14 @@ const EditHeroForm = ({ name, img, superPower, universe, nemesis, onNameChange, 
       </div>
       <div>
         <label>Nemesis:</label>
-        <input value={nemesis} onChange={onNemesisChange} />
+        <select onChange={onNemesisChange}>
+          <option>Choose Nemesis</option>
+          {
+            villains.map((villain, index) => {
+              return <option key={index} value={villain._id}>{villain.name}</option>
+            })
+          }
+        </select>
       </div>
       <button onClick={submitHeroToServer}>SUBMIT</button>
     </form>
@@ -40,7 +47,8 @@ EditHeroForm.propTypes = {
   onSuperPowerChange: PropTypes.func.isRequired,
   onUniverseChange: PropTypes.func.isRequired,
   onNemesisChange: PropTypes.func.isRequired,
-  submitHeroToServer: PropTypes.func.isRequired
+  submitHeroToServer: PropTypes.func.isRequired,
+  villains: PropTypes.array.isRequired
 }
 
 export default EditHeroForm

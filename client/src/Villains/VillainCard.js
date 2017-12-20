@@ -100,7 +100,7 @@ const VillainCard = ({ villain, deleteVillain, showUniqueVillain }) => {
         <p style={styles.titles}>Universe:</p>
         <p style={styles.traits}>{villain.universe}</p>
         <p style={styles.titles}>Nemesis:</p>
-        <p style={styles.traits}>{villain.nemesis}</p>
+        <p style={styles.traits}>{villain.nemesis ? villain.nemesis.name : 'No Nemesis'}</p>
       </div>
     </div>
   )

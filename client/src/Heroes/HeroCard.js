@@ -87,22 +87,24 @@ const HeroCard = ({ hero, deleteHero, showUniqueHero }) => {
       </div>
 
       <div style={styles.buttonSection}>
-      <button style={styles.button} onClick={() => showUniqueHero(hero)}> MORE INFO </button>
-      <button style={styles.button} onClick={() => deleteHero(hero)}> DELETE </button>
+        <button style={styles.button} onClick={() => showUniqueHero(hero)}> MORE INFO </button>
+        <button style={styles.button} onClick={() => deleteHero(hero)}> DELETE </button>
       </div>
 
       <div style={styles.linkSection}>
-      <Link style={styles.link} to={`/hero/${hero._id}`}>View Info</Link>
-      <Link style={styles.link} to={`/edit-hero/${hero._id}`}>Edit Hero</Link>
+        <Link style={styles.link} to={`/hero/${hero._id}`}>View Info</Link>
+        <Link style={styles.link} to={`/edit-hero/${hero._id}`}>Edit Hero</Link>
       </div>
 
       <div style={styles.bottomSection}>
         <p style={styles.titles}>Super Power:</p>
         <p style={styles.traits}>{hero.superPower}</p>
+
         <p style={styles.titles}>Universe:</p>
         <p style={styles.traits}>{hero.universe}</p>
+
         <p style={styles.titles}>Nemesis:</p>
-        <p style={styles.traits}>{hero.nemesis}</p>
+        <p style={styles.traits}>{hero.nemesis ? hero.nemesis.name : 'No Nemesis'}</p>
       </div>
     </div>
   )

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const EditVillainForm = ({ name, img, universe, nemesis, onNameChange, onImageChange, onUniverseChange, onNemesisChange, submitVillainToServer }) => {
+const EditVillainForm = ({ heroes, name, img, universe, nemesis, onNameChange, onImageChange, onUniverseChange, onNemesisChange, submitVillainToServer }) => {
   return (
     <form>
       <div>
@@ -18,7 +18,14 @@ const EditVillainForm = ({ name, img, universe, nemesis, onNameChange, onImageCh
       </div>
       <div>
         <label>Nemesis:</label>
-        <input value={nemesis} onChange={onNemesisChange} />
+        <select onChange={onNemesisChange}>
+          <option>Choose Nemesis</option>
+          {
+            heroes.map((hero, index) => {
+              return <option key={index} value={hero._id}>{hero.name}</option>
+            })
+          }
+        </select>
       </div>
       <button onClick={submitVillainToServer}>SUBMIT</button>
     </form>
@@ -34,7 +41,8 @@ EditVillainForm.propTypes = {
   onImageChange: PropTypes.func.isRequired,
   onUniverseChange: PropTypes.func.isRequired,
   onNemesisChange: PropTypes.func.isRequired,
-  submitVillainToServer: PropTypes.func.isRequired
+  submitVillainToServer: PropTypes.func.isRequired,
+  heroes: PropTypes.array.isRequired
 }
 
 export default EditVillainForm

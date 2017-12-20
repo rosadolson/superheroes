@@ -69,7 +69,7 @@ class App extends Component {
     }).done((response) => {
       console.log(response)
       const hero = response.hero
-      alert(`${hero.name} has ${hero.superPower} as a super power, and is from ${hero.universe}. ${hero.name} hates ${hero.nemesis}.`)
+      alert(`${hero.name} has ${hero.superPower} as a super power, and is from ${hero.universe}. ${hero.name} hates ${hero.nemesis.name}.`)
     })
   }
 
@@ -80,7 +80,7 @@ class App extends Component {
     }).done((response) => {
       console.log(response)
       const villain = response.villain
-      alert(`${villain.name} is from ${villain.universe} and hates ${villain.nemesis}.`)
+      alert(`${villain.name} is from ${villain.universe} and hates ${villain.nemesis.name}.`)
     })
   }
 
@@ -90,22 +90,38 @@ class App extends Component {
         <div>
           <NavBar />
           <Route exact path='/' component={Home} />
-          <Route path='/create-hero' render={() => <CreateHeroContainer loadHeroesFromServer={this.loadHeroesFromServer} />} />
+          {
+            this.state.villains
+            ?   <Route path='/create-hero' render={() => <CreateHeroContainer villains={this.state.villains} loadHeroesFromServer={this.loadHeroesFromServer} />} />
+            : 'No Heroes'
+          }
           {
             this.state.heroes
             ? <Route path='/heroes' render={() =>  <HeroesList heroes={this.state.heroes} deleteHero={this.deleteHero} showUniqueHero={this.showUniqueHero} />} />
             : 'No Heroes'
           }
-          <Route path='/create-villain' render={() => <CreateVillainContainer loadVillainsFromServer={this.loadVillainsFromServer} />} />
+          {
+            this.state.villains
+            ? <Route path='/edit-hero/:heroId' render={() => <EditHeroContainer villains={this.state.villains} />} />
+            : 'No Heroes'
+          }
+          <Route exact path='/hero/:heroId' render={() => <HeroContainer />} />
+          {
+            this.state.heroes
+            ?  <Route path='/create-villain' render={() => <CreateVillainContainer heroes={this.state.heroes} loadVillainsFromServer={this.loadVillainsFromServer} />} />
+            : 'No Villains'
+          }
           {
             this.state.villains
             ? <Route path='/villains' render={() => <VillainsList villains={this.state.villains} deleteVillain={this.deleteVillain} showUniqueVillain={this.showUniqueVillain} />} />
             : 'No Villains'
           }
-          <Route exact path='/hero/:heroId' render={() => <HeroContainer />} />
-          <Route path='/edit-hero/:heroId' render={() => <EditHeroContainer />} />
+          {
+            this.state.heroes
+            ?  <Route path='/edit-villain/:villainId' render={() => <EditVillainContainer heroes={this.state.heroes} />} />
+            : 'No Villains'
+          }
           <Route exact path='/villain/:villainId' render={() => <VillainContainer />} />
-          <Route path='/edit-villain/:villainId' render={() => <EditVillainContainer />} />
         </div>
       </Router>
     )

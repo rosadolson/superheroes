@@ -4,7 +4,9 @@ const SuperHero = require('../models/SuperHero')
 
 Router.route('/api/heroes')
   .get((req, res) => {
-    SuperHero.find((err, superHeroes) => {
+    SuperHero.find()
+    .populate('nemesis')
+    .exec((err, superHeroes) => {
       if (err) {
         res.json({ error: err })
       } else {
@@ -29,7 +31,9 @@ Router.route('/api/heroes')
 Router.route('/api/heroes/:heroId')
   .get((req, res) => {
     const heroId = req.params.heroId
-    SuperHero.findById({_id: heroId}, (err, hero) => {
+    SuperHero.findById({_id: heroId})
+    .populate('nemesis')
+    .exec((err, hero) => {
       if (err) {
         res.json({ error: err})
       } else {
