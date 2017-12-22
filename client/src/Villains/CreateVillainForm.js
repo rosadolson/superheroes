@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Button from '../Components/Button'
 
 const styles = {
   container: {
@@ -22,10 +23,6 @@ const styles = {
     display: 'flex',
     alignContent: 'flex-end',
     padding: '2%'
-  },
-  button: {
-    marginLeft: '20%',
-    marginTop: '4%'
   }
 }
 
@@ -45,7 +42,6 @@ const CreateVillainForm = ({ heroes, onNameChange, onImageChange, onUniverseChan
           <label style={styles.titles}>Universe: </label>
           <input style={styles.input} type='text' placeholder='Type Universe Here' onChange={onUniverseChange} />
         </div>
-
         <div style={styles.section}>
           <label style={styles.titles}>Nemesis: </label>
           <select onChange={onNemesisChange}>
@@ -57,8 +53,7 @@ const CreateVillainForm = ({ heroes, onNameChange, onImageChange, onUniverseChan
             }
           </select>
         </div>
-        
-        <button style={styles.button} onClick={submitVillain}> SUBMIT </button>
+        <Button handleClick={submitVillain}>SUBMIT</Button>
       </form>
     </div>
   )

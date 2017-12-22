@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import CommentList from '../Components/CommentList'
+import CommentForm from '../Components/CommentForm'
 
 const styles = {
   container: {
@@ -18,10 +19,14 @@ const styles = {
   nemesis: {
     backgroundColor: '#bdc3c7',
     padding: '3%'
+  },
+  textBox: {
+    resize: 'none',
+    width: 300
   }
 }
 
-const HeroInfo = ({ hero, comments }) => {
+const HeroInfo = ({ text, hero, comments, handleTextChange, submitComment  }) => {
   return (
     <div style={styles.container}>
       <h3>{hero.name}</h3>
@@ -41,13 +46,21 @@ const HeroInfo = ({ hero, comments }) => {
       }
       <h2>Comments:</h2>
       <CommentList comments={comments} />
+      <CommentForm
+        text={text}
+        handleTextChange={handleTextChange}
+        submitComment={submitComment}
+        />
     </div>
   )
 }
 
 HeroInfo.propTypes = {
   hero: PropTypes.object.isRequired,
-  comments: PropTypes.array.isRequired
+  comments: PropTypes.array.isRequired,
+  handleTextChange: PropTypes.func.isRequired,
+  submitComment: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired
 }
 
 export default HeroInfo

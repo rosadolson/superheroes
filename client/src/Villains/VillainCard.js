@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
+import CardHeader from '../Components/CardHeader'
+import CardSubtitle from '../Components/CardSubtitle'
 
 const styles = {
   container: {
@@ -81,10 +83,7 @@ const VillainCard = ({ villain, deleteVillain, showUniqueVillain }) => {
   return (
     <div style={styles.container}>
 
-      <div style={styles.topSection}>
-        <h2 style={styles.name}>{villain.name}</h2>
-        <img style={styles.image} src={villain.img} />
-      </div>
+      <CardHeader name={villain.name} img={villain.img} />
 
       <div style={styles.buttonSection}>
         <button style={styles.button} onClick={() => showUniqueVillain(villain)}>MORE INFO</button>
@@ -97,8 +96,7 @@ const VillainCard = ({ villain, deleteVillain, showUniqueVillain }) => {
       </div>
       
       <div style={styles.bottomSection}>
-        <p style={styles.titles}>Universe:</p>
-        <p style={styles.traits}>{villain.universe}</p>
+        <CardSubtitle title={'Universe:'} trait={villain.universe} />
         <p style={styles.titles}>Nemesis:</p>
         <p style={styles.traits}>{villain.nemesis ? villain.nemesis.name : 'No Nemesis'}</p>
       </div>

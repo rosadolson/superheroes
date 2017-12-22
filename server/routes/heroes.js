@@ -43,9 +43,11 @@ Router.route('/api/heroes')
     })
   })
 
-Router.route('/api/heroes/:heroId/comments')
+  Router.route('/api/heroes/:heroId/comments')
   .post((req, res) => {
-    const newComment = req.body.text
+    const {text} = req.body
+    const newComment = {text}
+
     Comment(newComment).save((err, savedComment) => {
       if (err) {
         res.json({ error: err })
@@ -57,7 +59,7 @@ Router.route('/api/heroes/:heroId/comments')
             hero.comments.push(savedComment._id)
             hero.save((err, updatedHero) => {
               if (err) {
-                res.json({ erro: err })
+                res.json({ error: err })
               } else {
                 res.json({ msg: 'SUCCESS', data: updatedHero })
               }

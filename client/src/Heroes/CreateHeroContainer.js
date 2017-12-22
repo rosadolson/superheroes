@@ -43,15 +43,7 @@ class CreateHeroContainer extends Component {
     nemesis: undefined
   }
 
-  onNameChange = (e) => this.setState({ name: e.target.value })
-
-  onSuperPowerChange = (e) => this.setState({ superPower: e.target.value })
-
-  onImageChange = (e) => this.setState({ img: e.target.value })
-
-  onUniverseChange = (e) => this.setState({ universe: e.target.value })
-
-  onNemesisChange = (e) => this.setState({ nemesis: e.target.value })
+  onChangeHandler = (e) => this.setState({ [e.target.id]: e.target.value })
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -76,11 +68,7 @@ class CreateHeroContainer extends Component {
         </div>
         <div style={styles.formSection}>
         <CreateHeroForm 
-          onNameChange={this.onNameChange}
-          onSuperPowerChange={this.onSuperPowerChange}
-          onImageChange={this.onImageChange}
-          onUniverseChange={this.onUniverseChange}
-          onNemesisChange={this.onNemesisChange}
+          onChangeHandler={this.onChangeHandler}
           handleSubmit={this.handleSubmit}
           villains={this.props.villains}
         />

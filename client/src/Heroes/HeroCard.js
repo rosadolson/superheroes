@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
+import CardHeader from '../Components/CardHeader'
+import CardSubtitle from '../Components/CardSubtitle'
 
 const styles = {
   container: {
@@ -10,22 +12,7 @@ const styles = {
     marginRight: '2%',
     marginBottom: '2%',
     paddingBottom: '1%',
-    backgroundColor: '#34495e',
-  },
-  topSection: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-  },
-  image: {
-    width: '80%'
-  },
-  name: {
-    fontFamily: 'Candal, sans-serif',
-    color: '#e74c3c',
-    marginBottom: '4%',
-    fontSize: '20px'
+    backgroundColor: '#34495e'
   },
   bottomSection: {
     borderTop: '1px solid #ecf0f1',
@@ -36,20 +23,6 @@ const styles = {
     display: 'flex',
     justifyContent: 'flex-end',
     flexDirection: 'column'
-  },
-  titles: {
-    fontFamily: 'Candal, sans-serif',
-    color: '#e74c3c',
-    margin: '0%',
-    fontSize: '12px'
-  },
-  traits: {
-    margin: '0%',
-    paddingTop: '1%',
-    paddingBottom: '2%',
-    fontFamily: 'Roboto, sans-serif',
-    color: '#ecf0f1',
-    fontSize: '12px'
   },
   buttonSection: {
     display: 'flex',
@@ -80,11 +53,7 @@ const styles = {
 const HeroCard = ({ hero, deleteHero, showUniqueHero }) => {
   return (
     <div style={styles.container}>
-
-      <div style={styles.topSection}>
-        <h2 style={styles.name}>{hero.name}</h2>
-        <img style={styles.image} src={hero.img} />
-      </div>
+      <CardHeader name={hero.name} img={hero.img} />
 
       <div style={styles.buttonSection}>
         <button style={styles.button} onClick={() => showUniqueHero(hero)}> MORE INFO </button>
@@ -97,14 +66,9 @@ const HeroCard = ({ hero, deleteHero, showUniqueHero }) => {
       </div>
 
       <div style={styles.bottomSection}>
-        <p style={styles.titles}>Super Power:</p>
-        <p style={styles.traits}>{hero.superPower}</p>
-
-        <p style={styles.titles}>Universe:</p>
-        <p style={styles.traits}>{hero.universe}</p>
-
-        <p style={styles.titles}>Nemesis:</p>
-        <p style={styles.traits}>{hero.nemesis ? hero.nemesis.name : 'No Nemesis'}</p>
+        <CardSubtitle orange title={'Super Power:'} trait={hero.superPower} />
+        <CardSubtitle orange title={'Universe:'} trait={hero.universe} />
+        <CardSubtitle orange title={'Nemesis:'} trait={hero.nemesis ? hero.nemesis.name : 'No Nemesis'} />
       </div>
     </div>
   )

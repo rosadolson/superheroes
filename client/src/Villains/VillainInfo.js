@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import CommentList from '../Components/CommentList'
+import CommentForm from '../Components/CommentForm'
 
 const styles = {
   container: {
@@ -21,7 +22,7 @@ const styles = {
   }
 }
 
-const VillainInfo = ({ villain, comments }) => {
+const VillainInfo = ({ villain, comments,submitComment, text, handleTextChange }) => {
   return (
     <div style={styles.container}>
       <h3>{villain.name}</h3>
@@ -40,13 +41,21 @@ const VillainInfo = ({ villain, comments }) => {
       }
       <h2>Comments: </h2>
       <CommentList comments={comments} />
+      <CommentForm
+        text={text}
+        handleTextChange={handleTextChange}
+        submitComment={submitComment}
+        />
     </div>
   )
 }
 
 VillainInfo.propTypes = {
   villain: PropTypes.object.isRequired,
-  comments: PropTypes.array.isRequired
+  comments: PropTypes.array.isRequired,
+  handleTextChange: PropTypes.func.isRequired,
+  submitComment: PropTypes.func.isRequired,
+  text: PropTypes.string.isRequired
 }
 
 export default VillainInfo

@@ -13,7 +13,8 @@ const styles = {
 class HeroContainer extends Component {
   state = {
     hero: undefined,
-    comments: undefined
+    comments: undefined,
+    text: undefined
   }
 
   componentDidMount () {
@@ -31,12 +32,33 @@ class HeroContainer extends Component {
     })
   }
 
+  submitComment = (e) => {
+    e.preventDefault()
+    const newComment = {text: this.state.text}
+    $.ajax({
+      url: `/api/heroes/${this.props.match.params.heroId}/comments`,
+      method: 'POST',
+      data: newComment
+    }).done((response) => {
+      this.loadHero(this.props.match.params.heroId)
+      this.setState({ text: '' })
+    })
+  }
+
+  handleTextChange = (e) => this.setState({ text: e.target.value })
+
   render () {
     return (
       <div style={styles.container}>
         {
           this.state.hero
-          ? <HeroInfo hero={this.state.hero} comments={this.state.comments} />
+          ? <HeroInfo
+            hero={this.state.hero}
+            handleTextChange={this.handleTextChange}
+            submitComment={this.submitComment}
+            comments={this.state.comments}
+            text={this.state.text}
+          />
           : 'Hero not available.'
         }
       </div>

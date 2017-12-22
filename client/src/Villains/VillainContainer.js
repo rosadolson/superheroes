@@ -14,7 +14,8 @@ class VillainContainer extends Component {
   state = {
     villain: undefined,
     comments: undefined,
-    loading: true
+    loading: true,
+    text: undefined
   }
 
   componentDidMount () {
@@ -35,12 +36,33 @@ class VillainContainer extends Component {
     })
   }
 
+  submitComment = (e) => {
+    e.preventDefault()
+    const newComment = {text: this.state.text}
+    $.ajax({
+      url: `/api/villains/${this.props.match.params.villainId}/comments`,
+      method: 'POST',
+      data: newComment
+    }).done((response) => {
+      this.loadVillain(this.props.match.params.villainId)
+      this.setState({ text: '' })
+    })
+  }
+
+  handleTextChange = (e) => this.setState({ text: e.target.value })
+
   render () {
     return (
       <div style={styles.container}>
         {
           !this.state.loading
-          ? <VillainInfo villain={this.state.villain} comments={this.state.comments} />
+          ? <VillainInfo
+            villain={this.state.villain}
+            comments={this.state.comments}
+            submitComment={this.submitComment}
+            handleTextChange={this.handleTextChange}
+            text={this.state.text}
+            />
           : 'Hero not available.'
         }
       </div>
