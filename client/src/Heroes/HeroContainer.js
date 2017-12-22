@@ -12,7 +12,8 @@ const styles = {
 
 class HeroContainer extends Component {
   state = {
-    hero: undefined
+    hero: undefined,
+    comments: undefined
   }
 
   componentDidMount () {
@@ -26,7 +27,7 @@ class HeroContainer extends Component {
       method: 'GET'
     }).done((response) => {
       console.log(response)
-      this.setState({ hero: response.hero })
+      this.setState({ hero: response.hero, comments: response.hero.comments })
     })
   }
 
@@ -35,7 +36,7 @@ class HeroContainer extends Component {
       <div style={styles.container}>
         {
           this.state.hero
-          ? <HeroInfo hero={this.state.hero}/>
+          ? <HeroInfo hero={this.state.hero} comments={this.state.comments} />
           : 'Hero not available.'
         }
       </div>

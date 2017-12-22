@@ -45,6 +45,7 @@ const CreateVillainForm = ({ heroes, onNameChange, onImageChange, onUniverseChan
           <label style={styles.titles}>Universe: </label>
           <input style={styles.input} type='text' placeholder='Type Universe Here' onChange={onUniverseChange} />
         </div>
+
         <div style={styles.section}>
           <label style={styles.titles}>Nemesis: </label>
           <select onChange={onNemesisChange}>
@@ -56,6 +57,7 @@ const CreateVillainForm = ({ heroes, onNameChange, onImageChange, onUniverseChan
             }
           </select>
         </div>
+        
         <button style={styles.button} onClick={submitVillain}> SUBMIT </button>
       </form>
     </div>

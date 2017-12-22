@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import CommentList from '../Components/CommentList'
 
 const styles = {
   container: {
@@ -19,7 +21,7 @@ const styles = {
   }
 }
 
-const HeroInfo = ({ hero }) => {
+const HeroInfo = ({ hero, comments }) => {
   return (
     <div style={styles.container}>
       <h3>{hero.name}</h3>
@@ -37,8 +39,15 @@ const HeroInfo = ({ hero }) => {
         )
         : 'No Nemesis'
       }
+      <h2>Comments:</h2>
+      <CommentList comments={comments} />
     </div>
   )
+}
+
+HeroInfo.propTypes = {
+  hero: PropTypes.object.isRequired,
+  comments: PropTypes.array.isRequired
 }
 
 export default HeroInfo
